@@ -41,7 +41,7 @@ Following \cite{Callies2018RestratificationEddies}, we find it convenient to fur
     \\
     \pdv{p_{p}}{z} &= g\alpha \Theta_{p}
     \\
-    \pdv{\Theta_{p}}{t} &= - \bm{u} \cdot \nabla \Theta_{p} - w\Gamma + Q_{\Theta},
+    \pdv{\Theta_{p}}{t} &= - \bm{u} \cdot \nabla \Theta_{p} - w\Gamma + \pdv{\left( \kappa \Gamma \right)}{z} + Q_{\Theta},
 \end{align}
 where we have introduced the \ the no-normal flux boundary condition on the potential temperature perturbation becomes $( \nabla \Theta_{p}) \cdot \hat{\bm{n}} = - \Gamma (\hat{\bm{z}} \cdot \hat{\bm{n}})$ with $\hat{\bm{n}}$ normal to the boundary. This formulation allows the velocities and potential temperature perturbations to be periodic in the cross-slope direction while still maintaining a constant background stratification $N^{2} = g \alpha \Gamma$. Taking advantage of this, we now rotate the model equations into slope coordinates $(\hat{x},\hat{y},\hat{z}) = (x\cos{\theta} + z\sin{\theta}, y, z\cos{\theta} - x\sin{\theta})$, where $\theta$ is the slope angle. The model equations in slope coordinates are given by
 \begin{align}
@@ -53,11 +53,23 @@ where we have introduced the \ the no-normal flux boundary condition on the pote
     \pdv{p_{p}}{\hat{z}} &= g\alpha \Theta_{p}\mathunderline{blue}{\cos{\theta}} - \mathunderline{red}{\mathunderline{red}{\left\{ 2\Omega \hat{v} \sin{\varphi} \right\} \sin{\theta}}}
     \\
     \pdv{\Theta_{p}}{t} &= - \hat{\bm{u}} \cdot \nabla \Theta_{p} - 
-    \mathunderline{red}{\Gamma (\hat{w}\cos{\theta} + \hat{u}\sin{\theta})}+ Q_{\Theta}.\label{mitgcmrotated2}
+    \mathunderline{red}{\Gamma (\hat{w}\cos{\theta} + \hat{u}\sin{\theta})} + 
+    \mathunderline{red}{\Gamma \pdv{\kappa}{\hat{z}}\cos{\theta}}  + Q_{\Theta}.\label{mitgcmrotated2}
 \end{align}
-We implement this coordinate transformation by adding the terms underlined in red to the momentum and potential temperature tendencies, adding geometric corrections underlined in blue to existing terms, and adding the term underlined twice in red as a modification to the hydrostatic relation, which is used to diagnose the full pressure field by integrating from the surface to each vertical level.
-
-The boundary condition $( \nabla \Theta_{p}) \cdot \hat{\bm{n}} = - \Gamma (\hat{\bm{z}} \cdot \hat{\bm{n}})$ is imposed by adding a potential temperature tendency in the bottom grid cell equivalent to the effective heat flux across the boundary due to the background stratification.
+Several of these corrections are small and can be neglected without fundamentally changing the solution. In particular, the solution can be approximated by the following set of equations:
+\begin{align}
+    \pdv{\hat{u}}{t} + \pdv{p_{g}}{\hat{x}} + \pdv{p_{p}}{\hat{x}} &= - \hat{\bm{u}} \cdot \nabla \hat{u} - \left\{-2\Omega \hat{v} \sin{\varphi} \right\} + \mathunderline{red}{g\alpha \Theta_{p} \sin{\theta}} + \mathcal{F}_{\hat{u}}
+    \label{mitgcmrotated1}
+    \\
+    \pdv{\hat{v}}{t} + \pdv{p_{g}}{\hat{y}} + \pdv{p_{p}}{\hat{y}} &= - \hat{\bm{u}} \cdot \nabla \hat{v} -\left\{2\Omega \hat{u} \sin{\varphi} \right\} + \mathcal{F}_{\hat{v}}
+    \\
+    \pdv{p_{p}}{\hat{z}} &= g\alpha \Theta_{p}\mathunderline{blue}{\cos{\theta}}
+    \\
+    \pdv{\Theta_{p}}{t} &= - \hat{\bm{u}} \cdot \nabla \Theta_{p} - 
+    \mathunderline{red}{\Gamma (\hat{w}\cos{\theta} + \hat{u}\sin{\theta})} + 
+    \mathunderline{red}{\Gamma \left(\pdv{\kappa}{\hat{z}}\cos{\theta} \right)} + Q_{\Theta}.\label{mitgcmrotated2}
+\end{align}
+We implement this coordinate transformation by adding the terms underlined in red to the momentum and potential temperature tendencies, adding geometric corrections underlined in blue to existing terms, and adding the term underlined twice in red as a modification to the hydrostatic relation, which is used to diagnose the full pressure field by integrating from the surface to each vertical level. The boundary condition $\left(\kappa \nabla \Theta_{p} \right) \cdot \hat{\bm{n}} = - \kappa \Gamma (\hat{\bm{z}} \cdot \hat{\bm{n}})$ is imposed automatically by properly implementing the masks on the vertical diffusion term $\Gamma \left(\pdv{\kappa{\hat{z}}} \cos{\theta} \right)$.
 
 \section{Model setup}
 
