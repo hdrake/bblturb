@@ -1,0 +1,20 @@
+/LONGSTEP.h/1.4/Tue Jan 12 23:55:48 2010//
+/LONGSTEP_OPTIONS.h/1.2/Sat Dec 24 01:04:49 2011//
+/LONGSTEP_PARAMS.h/1.2/Tue Jan 12 23:55:48 2010//
+/README/1.2/Tue Jan 12 23:55:48 2010//
+/longstep_average.F/1.6/Wed Apr 27 22:14:55 2011//
+/longstep_average_3d.F/1.4/Mon Nov 16 23:11:21 2015//
+/longstep_average_3d_fac.F/1.3/Mon Nov 16 23:11:21 2015//
+/longstep_check_iters.F/1.4/Mon Nov 16 23:11:21 2015//
+/longstep_correction_step.F/1.3/Thu Aug  7 17:37:32 2014//
+/longstep_diagnostics_init.F/1.3/Tue Jan 12 23:55:48 2010//
+/longstep_fill_3d.F/1.3/Sun Jun 28 16:35:48 2009//
+/longstep_fill_3d_fac.F/1.2/Mon Jan 18 01:02:56 2010//
+/longstep_fill_3d_rs.F/1.2/Thu Sep 10 14:41:13 2009//
+/longstep_forcing_surf.F/1.1/Tue Jan 12 23:55:48 2010//
+/longstep_init_fixed.F/1.2/Tue Jan 12 23:55:48 2010//
+/longstep_init_varia.F/1.2/Sun Jun 28 16:35:48 2009//
+/longstep_readparms.F/1.4/Tue May 27 23:41:28 2014//
+/longstep_reset_3d.F/1.3/Sun Jun 28 16:35:48 2009//
+/longstep_thermodynamics.F/1.9/Fri Dec 27 16:01:16 2013//
+D

@@ -1,0 +1,9 @@
+C $Header: /u/gcmpack/MITgcm/pkg/dic/dic_ad.flow,v 1.4 2013/04/11 15:47:14 jahn Exp $
+C $Name:  $
+
+C----------------------------------------
+C subroutine DIC_READ_CO2_PICKUP
+C----------------------------------------
+CADJ SUBROUTINE DIC_READ_CO2_PICKUP  INPUT  = 1,2
+CADJ SUBROUTINE DIC_READ_CO2_PICKUP  OUTPUT =
+

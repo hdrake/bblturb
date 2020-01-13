@@ -1,0 +1,15 @@
+C $Header: /u/gcmpack/MITgcm/pkg/mypackage/mypackage_ad.flow,v 1.4 2008/05/09 18:31:24 dfer Exp $
+C $Name:  $
+
+C----------------------------------------
+C subroutine  mypackage_diagnostics_state
+C----------------------------------------
+CADJ SUBROUTINE mypackage_diagnostics_state INPUT  = 1,2,3
+CADJ SUBROUTINE mypackage_diagnostics_state OUTPUT =
+
+C----------------------------------------
+C subroutine  mypackage_read_pickup
+C----------------------------------------
+CADJ SUBROUTINE mypackage_read_pickup  INPUT  = 1,2
+CADJ SUBROUTINE mypackage_read_pickup  OUTPUT =
+

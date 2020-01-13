@@ -1,0 +1,17 @@
+setup.py
+MITgcmutils/__init__.py
+MITgcmutils/diagnostics.py
+MITgcmutils/jmd95.py
+MITgcmutils/llc.py
+MITgcmutils/mds.py
+MITgcmutils/mnc.py
+MITgcmutils/netcdf.py
+MITgcmutils/ptracers.py
+MITgcmutils/pupynere.py
+MITgcmutils.egg-info/PKG-INFO
+MITgcmutils.egg-info/SOURCES.txt
+MITgcmutils.egg-info/dependency_links.txt
+MITgcmutils.egg-info/top_level.txt
+MITgcmutils/cs/__init__.py
+MITgcmutils/cs/pcol.py
+scripts/gluemncbig

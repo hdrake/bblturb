@@ -1,0 +1,14 @@
+Makefile
+api_ref
+*.tex
+.targets
+.dir_list_nocomments
+*.aux
+*.dvi
+*.log
+*.out
+*.toc
+*.pdf
+*.ps
+*.bbl
+*.blg

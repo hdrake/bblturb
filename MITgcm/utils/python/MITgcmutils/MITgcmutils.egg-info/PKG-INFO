@@ -1,0 +1,10 @@
+Metadata-Version: 1.2
+Name: MITgcmutils
+Version: 0.1.0
+Summary: Python utilities for MITgcm
+Home-page: http://mitgcm.org/
+Maintainer: Oliver Jahn
+Maintainer-email: jahn@mit.edu
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
