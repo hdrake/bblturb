@@ -31,9 +31,9 @@
   frequency(2) = 10800.,
 
 # KPP diagnostics
-  fields(1:1,3) = 'KPPdiffT',
-  fileName(3) = 'mixDiag',
-  frequency(3) = 10800.,
+#  fields(1:1,3) = 'KPPdiffT',
+#  fileName(3) = 'mixDiag',
+#  frequency(3) = 10800.,
 # GM diagnostics
 #  fields(1:1,3)  = 'RHOAnoma',
 #  fileName(3) = 'oceDiag',
