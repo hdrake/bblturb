@@ -1,5 +1,9 @@
 .ipynb_checkpoints
 data
 run/
+run*
 build/
 *.init
+std*
+*.meta
+*.data
