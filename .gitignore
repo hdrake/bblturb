@@ -1,5 +1,5 @@
 .ipynb_checkpoints
-data
+data/
 run/
 run*
 build/

@@ -23,6 +23,7 @@
   fields(1:5,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
   fileName(1) = 'standardDiag',
   frequency(1) = 864000.,
+#  frequency(1) = -600.,
 
 # Standard diagnostics snapshots
   fields(1:5,2)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'DRHODR',
