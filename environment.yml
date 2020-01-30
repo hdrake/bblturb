@@ -1,0 +1,15 @@
+name: bblturb-analysis
+channels:
+  - conda-forge
+dependencies:
+  - dask
+  - xarray
+  - xmitgcm
+  - xrft
+  - jupyterlab
+  - netCDF4
+  - h5py
+  - matplotlib
+  - pip
+  - pip:
+    - git+https://github.com/xgcm/xgcm.git
