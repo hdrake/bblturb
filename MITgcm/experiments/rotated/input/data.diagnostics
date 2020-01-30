@@ -20,10 +20,11 @@
  &DIAGNOSTICS_LIST
 # diag_mnc     = .FALSE.,
 # Standard diagnostics
-  fields(1:5,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
+  fields(1:6,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
+                  'PHIHYD',
   fileName(1) = 'standardDiag',
-  frequency(1) = 864000.,
-#  frequency(1) = -600.,
+#  frequency(1) = 864000.,
+  frequency(1) = -6000.,
 
 # Standard diagnostics snapshots
   fields(1:5,2)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'DRHODR',
@@ -35,7 +36,13 @@
                   'DFrE_TH', 'DFxE_TH', 'DFyE_TH', 'TOTTTEND',
                   'TOTUTEND', 'TOTVTEND',
   filename(3) = 'Diag',
-  frequency(3) = 864000.,
+#  frequency(3) = 864000.,
+  frequency(3) = -6000.,
+
+# Two-Dimensional Diagnostics
+  fields(1:1,4) = 'PHI_SURF',
+  filename(4) = 'twoDimDiags',
+  frequency(4) = -6000.,
 
 # KPP diagnostics
 #  fields(1:2,3) = 'KPPdiffT', 'KPPviscA',

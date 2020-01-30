@@ -1,7 +1,0 @@
-# MYPACKAGE CHOICES
- &MYPACKAGE_PARM01
- myPa_applyTendT = .true.,
- myPa_applyTendU = .true.,
- myPa_applyTendV = .true.,
- myPa_Tend_Cgrid = .true.,
- &

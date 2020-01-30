@@ -66,7 +66,8 @@
 # Time stepping parameters
  &PARM03
  niter0          =        0,
- nTimeSteps      =   720000,
+ nTimeSteps      =      300,
+# nTimeSteps      =   720000,
  deltaT          =      60.,
  dumpFreq        =       0.,
  monitorFreq     =   10800.,
