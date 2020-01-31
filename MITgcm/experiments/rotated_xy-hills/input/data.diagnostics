@@ -24,12 +24,14 @@
                   'PHIHYD',
   fileName(1) = 'standardDiag',
   frequency(1) = 864000.,
+#  frequency(1) = 10800.,
 
 # Standard diagnostics snapshots
   fields(1:6,2)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'DRHODR',
                   'PHIHYD',
   fileName(2) = 'snapshotDiag',
   frequency(2) = -864000.,
+#  frequency(2) = -10800.,
 
 # Temperature budget diagnostics
   fields(1:10,3) = 'gT_Forc', 'ADVr_TH', 'ADVx_TH', 'ADVy_TH',
@@ -37,6 +39,7 @@
                   'TOTUTEND', 'TOTVTEND',
   filename(3) = 'budgetDiag',
   frequency(3) = 864000.,
+#  frequency(3) = -10800.,
 
 # Two-Dimensional Diagnostics
 #  fields(1:1,4) = 'PHI_SURF',
