@@ -285,7 +285,7 @@ C       with dRlocM > 0 so we need to flip the sign of our source term.
      &           + dRlocM*(gravity*alphaRho(i,j)*recip_rhoConst
 C       Added geometric factor due to rotation of buoyancy production
 C       into cross-slope direction
-C     &                    *cos(slopeAngle)
+     &                    *cos(slopeAngle)
 C       Added Coriolis term to C-grid potential (interpolating in y)
 C     &           + 0.5*(vVel(i,j,k,bi,bj)+vVel(i,j+1,k,bi,bj))
 C     &           * sin(slopeAngle)*_fCori(i,j,bi,bj)
@@ -295,7 +295,7 @@ C     &           * sin(slopeAngle)*_fCori(i,j,bi,bj)
      &           + dRlocP*(gravity*alphaRho(i,j)*recip_rhoConst
 C       Added geometric factor due to rotation of buoyancy production
 C       into cross-slope direction
-C     &                    *cos(slopeAngle)
+     &                    *cos(slopeAngle)
 C       Added Coriolis term to F-grid potential (interpolating in y, r)
 C     &           + 0.5*(0.5*(vVel(i,j,k,bi,bj)+vVel(i,j+1,k,bi,bj))
 C     &                 +0.5*(vVel(i,j,kp1,bi,bj)+vVel(i,j+1,kp1,bi,bj)))

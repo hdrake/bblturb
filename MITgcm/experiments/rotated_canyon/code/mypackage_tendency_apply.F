@@ -146,18 +146,18 @@ C     add w*sin(theta)
         DO j=jMin,jMax
          DO i=iMin,iMax
           gV_arr(i,j) = gV_arr(i,j)
-     &     - maskS(i,j,k,bi,bj)
-     &     *(0.5*(_fCori(i,j-1,bi,bj)+_fCori(i,j,bi,bj))*(
+C     &     - maskS(i,j,k,bi,bj)
+C     &     *(0.5*(_fCori(i,j-1,bi,bj)+_fCori(i,j,bi,bj))*(
 C     Added geometric factor to existing Coriolis term due to rotation
 C     into the cross-slope direction
 C     &         0.25*(uVel(i,j-1,k,bi,bj)+uVel(i+1,j-1,k,bi,bj)
 C     &              +uVel(i, j ,k,bi,bj)+uVel(i+1, j ,k,bi,bj))
 C     &        *(cos(slopeAngle)-1.)
 C     Added projection of horizontal velocity on slope-normal direction
-     &        -0.25*(wVel(i,j-1,k,bi,bj)+wVel(i,j-1,kp1,bi,bj)
-     &              +wVel(i, j ,k,bi,bj)+wVel(i, j ,kp1,bi,bj))
-     &            *sin(slopeAngle)
-     &       ))
+C     &        -0.25*(wVel(i,j-1,k,bi,bj)+wVel(i,j-1,kp1,bi,bj)
+C     &              +wVel(i, j ,k,bi,bj)+wVel(i, j ,kp1,bi,bj))
+C     &            *sin(slopeAngle)
+C     &       ))
          ENDDO
         ENDDO
 C     ================================================================

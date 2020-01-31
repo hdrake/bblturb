@@ -11,17 +11,11 @@
  no_slip_sides  = .TRUE.,
  no_slip_bottom = .TRUE.,
 
-# viscAh  = 1.E-3,
-# viscAz  = 1.E-5,
+ viscA4 = 2.E3,
+ diffK4T = 2.E3,
 
- viscAh = 1.E-6,
- viscAz = 1.E-6,
-
- diffKhT = 1.E-6
- diffKzT = 1.E-6
-
+# viscAh = 1.E-5,
 # diffKhT = 1.E-5,
-# diffKzT = 1.E-5,
 
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
@@ -39,9 +33,9 @@
  lapseRate = 0.0008613659531090722,
  slopeAngle = 2.e-3,
 
- rigidLid = .TRUE.,
- implicitFreeSurface=.FALSE.,
- exactConserv = .FALSE.
+ rigidLid = .FALSE.,
+ implicitFreeSurface=.TRUE.,
+ exactConserv = .TRUE.
  nonHydrostatic = .FALSE.,
 
  useSingleCpuIO = .TRUE.,
@@ -49,11 +43,11 @@
  writeBinaryPrec = 64,
  writeStatePrec  = 64,
 
- staggerTimeStep=.TRUE.
+ staggerTimeStep = .FALSE.,
 
  saltStepping  = .FALSE.,
 
- tempAdvScheme = 77,
+ tempAdvScheme = 2,
 
  hFacMin=0.1,
 
@@ -75,9 +69,8 @@
 # Time stepping parameters
  &PARM03
  niter0          =        0,
-# nTimeSteps      =      300,
  nTimeSteps      =   720000,
- deltaT          =      60.,
+ deltaT          =      30.,
  dumpFreq        =       0.,
  monitorFreq     =   10800.,
  dumpInitAndLast =  .FALSE.,

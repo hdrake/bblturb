@@ -7,3 +7,5 @@ build/
 std*
 *.meta
 *.data
+
+__pycache__/
