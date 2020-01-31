@@ -1,0 +1,112 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+
+ tRef = 300*0.,
+ sRef = 300*35.,
+
+ no_slip_sides  = .TRUE.,
+ no_slip_bottom = .TRUE.,
+
+# viscAh  = 1.E-3,
+# viscAz  = 1.E-5,
+
+# viscAh = 1.E-6,
+# viscAz = 1.E-6,
+
+# viscA4 = 6.E4,
+# diffK4T = 6.E4,
+
+# diffKhT = 1.E-6,
+# diffKzT = 1.E-6,
+
+# diffKhT = 1.E-5,
+# diffKzT = 1.E-5,
+
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+
+ f0   = 0.53E-4,
+ beta = 0.E-11,
+
+ eosType= 'LINEAR',
+ tAlpha = 2.E-4,
+ sBeta  = 0.E-4,
+
+ gravity = 9.81,
+ gBaro   = 9.81,
+
+# lapseRate = 0.0008613659531090722,
+# slopeAngle = 2.e-3,
+# slopeAngle = 0.,
+
+ rigidLid = .TRUE.,
+ implicitFreeSurface=.FALSE.,
+ exactConserv = .FALSE.
+ nonHydrostatic = .FALSE.,
+
+ useSingleCpuIO = .TRUE.,
+ readBinaryPrec  = 64,
+ writeBinaryPrec = 64,
+ writeStatePrec  = 64,
+
+ staggerTimeStep=.TRUE.
+
+ saltStepping  = .FALSE.,
+
+ tempAdvScheme = 77,
+
+ hFacMin=0.1,
+
+## This parameter is not in the NAMELIST in this version of MITgcm.
+# momTidalForcing = .FALSE.,
+
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters       =  10000,
+ cg2dTargetResidual = 1.E-14,
+ cg2dUseMinResSol   =      1,
+
+ cg3dMaxIters       =   1000,
+ cg3dTargetResidual = 1.E-14,
+ &
+
+# Time stepping parameters
+ &PARM03
+ niter0          =        0,
+ nTimeSteps      =     2000,
+# nTimeSteps      =   720000,
+ deltaT          =      60.,
+ dumpFreq        =       0.,
+ monitorFreq     =   10800.,
+ dumpInitAndLast =  .FALSE.,
+ abEps           =      0.1,
+ pChkptFreq      =  864000.,
+ chkptFreq       =      0.0,
+ momDissip_In_AB =  .FALSE.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ usingSphericalPolarGrid=.FALSE.,
+
+ delX =   128*300.,
+ delY =   128*300., 
+ delRFile = 'delZ.init',
+ &
+
+# Input datasets
+ &PARM05
+
+ uVelInitFile    = 'U.init',
+ vVelInitFile    = 'V.init',
+ hydrogThetaFile = 'T.init',
+ bathyFile       = 'topog.init',
+ diffKrFile      = 'kappa.init',
+ &

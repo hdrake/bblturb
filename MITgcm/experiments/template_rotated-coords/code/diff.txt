@@ -1,0 +1,68 @@
+diff ../build/BUILD_INFO.h ../../3d_rotated_perturbations/build/BUILD_INFO.h
+3c3
+< #define THISDATE 'Tue Dec 31 11:14:04 EST 2019'
+---
+> #define THISDATE 'Sat Mar 16 13:52:56 EDT 2019'
+diff ../build/eeintro_msg.f ../../3d_rotated_perturbations/build/eeintro_msg.f
+1517c1517
+<      &     'Tue Dec 31 11:14:04 EST 2019'
+---
+>      &     'Sat Mar 16 13:52:56 EDT 2019'
+Binary files ../build/eeintro_msg.o and ../../3d_rotated_perturbations/build/eeintro_msg.o differ
+diff ../build/genmake.log ../../3d_rotated_perturbations/build/genmake.log
+18c18
+<   HELLO WORLD   1577808845.53882     
+---
+>   HELLO WORLD   1552758777.97866     
+diff ../build/Makefile ../../3d_rotated_perturbations/build/Makefile
+4c4
+< #    Tue Dec 31 11:14:04 EST 2019
+---
+> #    Sat Mar 16 13:52:56 EDT 2019
+8c8
+< #    hdrake@eofe7.cm.cluster:/nobackup1/hdrake/mitgcm_static/TurbulentCirculation/rotated_setups/3d_rotated_perturbations_test/build
+---
+> #    hdrake@eofe7.cm.cluster:/nobackup1/hdrake/mitgcm_static/TurbulentCirculation/rotated_setups/3d_rotated_perturbations/build
+69c69
+< CPPINCLUDES =  -I/cm/shared/engaging/intel/intel-2013.1.046/include -I/cm/shared/engaging/anaconda/2018.12/include -I/home/software/julia/1.2.0/include -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include
+---
+> CPPINCLUDES =  -I/cm/shared/engaging/intel/intel-2013.1.046/include -I/cm/shared/engaging/openmpi/2.0.3/include -I/cm/shared/engaging/OpenBLAS/0.2.14/include -I/cm/shared/engaging/python/3.6.0/include -I/cm/shared/engaging/python/2.7.10/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include-fixed -I/usr/local/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/../../include -I/usr/include
+1324c1324
+< 	-echo "#define THISDATE 'Tue Dec 31 11:14:04 EST 2019'" >> $@
+---
+> 	-echo "#define THISDATE 'Sat Mar 16 13:52:56 EDT 2019'" >> $@
+diff ../build/Makefile.bak ../../3d_rotated_perturbations/build/Makefile.bak
+4c4
+< #    Tue Dec 31 11:14:04 EST 2019
+---
+> #    Sat Mar 16 13:52:56 EDT 2019
+8c8
+< #    hdrake@eofe7.cm.cluster:/nobackup1/hdrake/mitgcm_static/TurbulentCirculation/rotated_setups/3d_rotated_perturbations_test/build
+---
+> #    hdrake@eofe7.cm.cluster:/nobackup1/hdrake/mitgcm_static/TurbulentCirculation/rotated_setups/3d_rotated_perturbations/build
+69c69
+< CPPINCLUDES =  -I/cm/shared/engaging/intel/intel-2013.1.046/include -I/cm/shared/engaging/anaconda/2018.12/include -I/home/software/julia/1.2.0/include -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include
+---
+> CPPINCLUDES =  -I/cm/shared/engaging/intel/intel-2013.1.046/include -I/cm/shared/engaging/openmpi/2.0.3/include -I/cm/shared/engaging/OpenBLAS/0.2.14/include -I/cm/shared/engaging/python/3.6.0/include -I/cm/shared/engaging/python/2.7.10/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/x86_64-unknown-linux-gnu/4.8.4/include-fixed -I/usr/local/include -I/nfs/software001-rw/cm/shared/apps/gcc/4.8.4/bin/../lib/gcc/../../include -I/usr/include
+1324c1324
+< 	-echo "#define THISDATE 'Tue Dec 31 11:14:04 EST 2019'" >> $@
+---
+> 	-echo "#define THISDATE 'Sat Mar 16 13:52:56 EDT 2019'" >> $@
+Only in ../../3d_rotated_perturbations/build: Makefile.old
+Binary files ../build/mitgcmuv and ../../3d_rotated_perturbations/build/mitgcmuv differ
+diff ../build/mypackage_tendency_apply.f ../../3d_rotated_perturbations/build/mypackage_tendency_apply.f
+6047c6047
+< C     &     *(0.5*(fCori(i,j-1,bi,bj)+fCori(i,j,bi,bj))*(
+---
+>      &     *(0.5*(fCori(i,j-1,bi,bj)+fCori(i,j,bi,bj))*(
+6054,6057c6054,6057
+< C     &        -0.25*(wVel(i,j-1,k,bi,bj)+wVel(i,j-1,kp1,bi,bj)
+< C     &              +wVel(i, j ,k,bi,bj)+wVel(i, j ,kp1,bi,bj))
+< C     &            *sin(slopeAngle)
+< C     &       ))
+---
+>      &        -0.25*(wVel(i,j-1,k,bi,bj)+wVel(i,j-1,kp1,bi,bj)
+>      &              +wVel(i, j ,k,bi,bj)+wVel(i, j ,kp1,bi,bj))
+>      &            *sin(slopeAngle)
+>      &       ))
+Binary files ../build/mypackage_tendency_apply.o and ../../3d_rotated_perturbations/build/mypackage_tendency_apply.o differ

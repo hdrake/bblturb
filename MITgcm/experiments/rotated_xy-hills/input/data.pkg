@@ -1,0 +1,7 @@
+# Packages
+ &PACKAGES
+ useDiagnostics=.TRUE.,
+ useMNC=.FALSE.,
+ useMYPACKAGE=.TRUE.,
+ useKPP=.FALSE.,
+ &
