@@ -5,8 +5,8 @@
 # Continuous equation parameters
  &PARM01
 
- tRef = 300*0.,
- sRef = 300*35.,
+ tRef = 260*0.,
+ sRef = 260*35.,
 
  no_slip_sides  = .TRUE.,
  no_slip_bottom = .TRUE.,
@@ -31,7 +31,7 @@
  gBaro   = 9.81,
 
  lapseRate = 0.0008613659531090722,
- slopeAngle = 1.53e-3,
+ slopeAngle = 1.53E-3,
 
  rigidLid = .FALSE.,
  implicitFreeSurface=.TRUE.,
@@ -69,13 +69,14 @@
 # Time stepping parameters
  &PARM03
  niter0          =        0,
- nTimeSteps      =   720000,
- deltaT          =      30.,
+ nTimeSteps      =   144000,
+# nTimeSteps      =     2000,
+ deltaT          =      60.,
  dumpFreq        =       0.,
  monitorFreq     =   10800.,
  dumpInitAndLast =  .FALSE.,
  abEps           =      0.1,
- pChkptFreq      =  864000.,
+ pChkptFreq      = 8640000.,
  chkptFreq       =      0.0,
  momDissip_In_AB =  .FALSE.,
  &
