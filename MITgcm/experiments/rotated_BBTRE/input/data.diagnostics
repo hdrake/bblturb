@@ -25,6 +25,7 @@
   fileName(1) = 'standardDiag',
   frequency(1) = 864000.,
 #  frequency(1) = 10800.,
+#  frequency(1) = -12000.,
 
 # Standard diagnostics snapshots
   fields(1:6,2)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'DRHODR',
