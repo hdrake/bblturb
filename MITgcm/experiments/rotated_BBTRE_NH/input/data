@@ -20,7 +20,7 @@
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
 
- f0   = -0.53E-4,
+ f0   = 0.53E-4,
  beta = 0.E-11,
 
  eosType= 'LINEAR',
@@ -68,12 +68,12 @@
 
 # Time stepping parameters
  &PARM03
- niter0 = 2880000,
- nTimeSteps      =   720000,
+ niter0          =        0,
+ nTimeSteps      =   144000,
 # nTimeSteps      =     2000,
  deltaT          =      60.,
  dumpFreq        =       0.,
- monitorFreq     =  864000.,
+ monitorFreq     =   10800.,
  dumpInitAndLast =  .FALSE.,
  abEps           =      0.1,
  pChkptFreq      = 8640000.,

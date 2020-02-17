@@ -1,0 +1,51 @@
+#!/bin/bash
+
+## Job
+#SBATCH --partition sched_mit_raffaele
+#SBATCH --nodes 8
+#SBATCH --ntasks 128
+#SBATCH --exclusive
+#SBATCH --mem 64000
+#SBATCH --time=48:00:00
+#SBATCH --job-name BBTRE
+#SBATCH --mail-type FAIL,END
+#SBATCH --mail-user hdrake@mit.edu
+
+## Streams
+#SBATCH --output=job_%j.out
+#SBATCH --output=job_%j.err
+
+startt=`date +%s`
+
+EXPNAME=$1
+ITER0=$2
+ITERSTEP=$3
+
+cd ../MITgcm/experiments/$EXPNAME/input
+
+# Setup modules and directories
+echo "Loading modules"
+. /etc/profile.d/modules.sh
+module add engaging/intel/2013.1.046
+
+cp * ../run
+cd ../run
+
+SECONDS=0
+# Run the model
+echo "Running model starting at niter0=$ITER0 for nTimeSteps=$ITERSTEP"
+mpirun -n 128 ./mitgcmuv > "mitgcm_output_"$ITER0".txt"
+echo "Model run completed in $SECONDS seconds"
+
+# Update starting iteration
+NEWITER0=`expr $ITER0 + $ITERSTEP`
+echo "Replaced niter0 = $ITER0 with niter0 = $NEWITER in data input file"
+cat data | sed -e "s/niter0 = $ITER0/niter0 = $NEWITER0/" > newdata
+mv data data_previous
+mv newdata data
+cp data ../input/data
+
+cd ../../../../scripts
+
+# Submit the new job
+sbatch $0 $EXPNAME $NEWITER0 $ITERSTEP
