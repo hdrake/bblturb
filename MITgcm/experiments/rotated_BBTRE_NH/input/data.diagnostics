@@ -23,7 +23,7 @@
   fields(1:6,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
                   'PHIHYD',
   fileName(1) = 'standardDiag',
-  frequency(1) = 8640000.,
+  frequency(1) = 864000.,
 #  frequency(1) = 10800.,
 #  frequency(1) = -12000.,
 
@@ -31,7 +31,7 @@
   fields(1:6,2)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'DRHODR',
                   'PHIHYD',
   fileName(2) = 'snapshotDiag',
-  frequency(2) = -8640000.,
+  frequency(2) = -864000.,
 #  frequency(2) = -10800.,
 
 # Temperature budget diagnostics
@@ -39,7 +39,7 @@
                   'DFrE_TH', 'DFxE_TH', 'DFyE_TH', 'TOTTTEND',
                   'TOTUTEND', 'TOTVTEND',
   filename(3) = 'budgetDiag',
-  frequency(3) = 8640000.,
+  frequency(3) = 864000.,
 #  frequency(3) = -10800.,
 
 # Two-Dimensional Diagnostics
