@@ -655,7 +655,12 @@ C       Explicit terms only & excluding advective terms:
 
 #ifdef ALLOW_KPP
 C-    Set non local KPP transport term (ghat):
-      IF ( trUseKPP .AND. k.GE.2 ) THEN
+C     ========================================
+C     HFD 02/25/2019
+C     Don't apply KPP transport
+C      IF ( trUseKPP .AND. k.GE.2 ) THEN
+      IF ( .FALSE. ) THEN
+C     ========================================
        DO j=1-OLy,sNy+OLy
         DO i=1-OLx,sNx+OLx
          df(i,j) = 0. _d 0

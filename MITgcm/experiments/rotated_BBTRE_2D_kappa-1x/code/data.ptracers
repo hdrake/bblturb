@@ -1,0 +1,21 @@
+ &PTRACERS_PARM01
+ PTRACERS_numInUse=1,
+ PTRACERS_Iter0=0,
+ PTRACERS_dumpFreq=43200.,
+# PTRACERS_dumpFreq=600.,
+# tracer 1 - Passive Tracer
+ PTRACERS_names(1)='ptracer',
+ PTRACERS_long_names(1)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(1)='mol/m^3',
+ PTRACERS_advScheme(1)=77,
+ PTRACERS_diffKh(1)=0.E3,
+ PTRACERS_diffKr(1)=0.E-5,
+ PTRACERS_useGMRedi(1)=.FALSE.,
+ PTRACERS_initialFile(1)='ptracer_init.bin',
+#- use F95 syntax (to be converted with -DNML_EXTENDED_F77 if needed)
+# PTRACERS_ref(1:15,1) = 2.0282, 2.0609, 2.1206, 2.1581,
+#                     2.1904, 2.2188, 2.2474, 2.2699,
+#                     2.2792, 2.2814, 2.2815, 2.2806,
+#                     2.2800, 2.2760, 2.2758,
+# PTRACERS_EvPrRn(1)= 0.,
+ &

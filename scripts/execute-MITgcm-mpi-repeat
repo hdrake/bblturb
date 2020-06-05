@@ -28,7 +28,7 @@ echo "Loading modules"
 . /etc/profile.d/modules.sh
 module add engaging/intel/2013.1.046
 
-cp * ../run
+scp * ../run
 cd ../run
 
 SECONDS=0
@@ -43,7 +43,7 @@ echo "Replaced niter0 = $ITER0 with niter0 = $NEWITER in data input file"
 cat data | sed -e "s/niter0 = $ITER0/niter0 = $NEWITER0/" > newdata
 mv data data_previous
 mv newdata data
-cp data ../input/data
+scp data ../input/data
 
 cd ../../../../scripts
 
