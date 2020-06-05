@@ -5,14 +5,14 @@
 # Continuous equation parameters
  &PARM01
 
- tRef = 300*0.,
- sRef = 300*35.,
+ tRef = 280*0.,
+ sRef = 280*35.,
 
  no_slip_sides  = .TRUE.,
  no_slip_bottom = .TRUE.,
 
- viscA4 = 2.E3,
- diffK4T = 2.E3,
+ viscA4 = 1.E4,
+ diffK4T = 1.E4,
 
 # viscAh = 1.E-5,
 # diffKhT = 1.E-5,
@@ -68,7 +68,7 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =        0,
+ niter0          =   720000,
  nTimeSteps      =   720000,
  deltaT          =      30.,
  dumpFreq        =       0.,
@@ -85,8 +85,8 @@
  usingCartesianGrid=.TRUE.,
  usingSphericalPolarGrid=.FALSE.,
 
- delX =   128*300.,
- delY =   128*300., 
+ delX =   256*600.,
+ delY =   256*600., 
  delRFile = 'delZ.init',
  &
 

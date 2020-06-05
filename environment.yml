@@ -4,12 +4,15 @@ channels:
 dependencies:
   - dask
   - xarray
-  - xmitgcm
   - xrft
+  - xhistogram
   - jupyterlab
   - netCDF4
   - h5py
+  - pytables
+  - gsw
   - matplotlib
   - pip
   - pip:
     - git+https://github.com/xgcm/xgcm.git
+    - git+https://github.com/MITgcm/xmitgcm.git
