@@ -1,6 +1,6 @@
 .ipynb_checkpoints
 figures
-data/
+data/*
 run/
 run*
 build/
