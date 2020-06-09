@@ -11,6 +11,7 @@ plt.rcParams['font.size'] = 16
 g = 9.81 # gravitational acceleration
 ρ0 = 1000. # reference density
 α = 2.e-4 # thermal expansion coefficient
+day2seconds = 1/86400.
 
 # Plotting parameters
 nancol = (0.65,0.65,0.65)
@@ -201,3 +202,46 @@ def preprocess(ds, θ):
     ds['Depthr'] = ds['Depth'] - ds['XC']*np.tan(θ)
     
     return ds, grid
+
+
+def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
+    """Calculate the convergence of fluxes of tracer `suffix` where
+    `suffix` is `_TH`, `Tr01`, or 'Tr02'. Return a new xarray.Dataset."""
+    new_suffix = suffix
+    if new_suffix[0] != "_":
+        new_suffix = "_"+new_suffix
+    
+    conv_horiz_adv_flux = -(grid.diff(ds['ADVx' + suffix], 'X') +
+                          grid.diff(ds['ADVy' + suffix], 'Y')).rename('conv_horiz_adv_flux' + new_suffix)
+    conv_horiz_diff_flux = -(grid.diff(ds['DFxE' + suffix], 'X') +
+                          grid.diff(ds['DFyE' + suffix], 'Y')).rename('conv_horiz_diff_flux' + new_suffix)
+
+    # sign convention is opposite for vertical fluxes
+    conv_vert_adv_flux = (
+        grid.diff(ds['ADVr' + suffix], 'Z', boundary='fill')
+        .rename('conv_vert_adv_flux' + new_suffix)
+    )
+    conv_vert_diff_flux = (
+        grid.diff(ds['DFrI' + suffix], 'Z', boundary='fill')
+        .rename('conv_vert_diff_flux' + new_suffix)
+    )
+
+    all_fluxes = [
+        conv_horiz_adv_flux, conv_horiz_diff_flux, conv_vert_adv_flux, conv_vert_diff_flux
+    ]
+
+    if suffix=="_TH":
+        # anomalous fluxes
+        conv_vert_diff_flux_anom = (-(grid.diff(
+            ds['KVDIFF'].where(ds['WVEL'] != 0.), 'Z', boundary='fill'
+        )/(ds['drF']*ds['hFacC'])*np.cos(θ)*Γ*ds['dV'])
+        ).rename('conv_vert_diff_flux_anom' + new_suffix)
+        conv_adv_flux_anom = -(
+            grid.interp(ds['UVEL'], 'X')*Γ*np.sin(θ)*ds['dV'] +
+            grid.interp(ds['WVEL'], 'Z', boundary='fill')*Γ*np.cos(θ)*ds['dV']
+        ).rename('conv_adv_flux_anom' + new_suffix)
+        all_fluxes += [conv_vert_diff_flux_anom, conv_adv_flux_anom]
+
+    conv_all_fluxes = sum(all_fluxes).rename('conv_total_flux' + new_suffix)
+
+    return xr.merge(all_fluxes + [conv_all_fluxes])

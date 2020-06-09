@@ -5,8 +5,8 @@
 # Continuous equation parameters
  &PARM01
 
- tRef = 260*0.,
- sRef = 260*35.,
+ tRef = 200*0.,
+ sRef = 200*35.,
 
  no_slip_sides  = .TRUE.,
  no_slip_bottom = .TRUE.,
@@ -28,7 +28,7 @@
  gBaro   = 9.81,
 
  lapseRate = 0.0008613659531090722,
- slopeAngle = 1.53E-3,
+ slopeAngle = 1.26E-3,
 
  rigidLid = .FALSE.,
  implicitFreeSurface=.TRUE.,
@@ -65,8 +65,8 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =  1152000,
- nTimeSteps      =   576000,
+ niter0          =   720000,
+ nTimeSteps      =   720000,
 # nTimeSteps      =       2,
  deltaT          =      60.,
  dumpFreq        =       0.,
@@ -83,8 +83,8 @@
  usingCartesianGrid=.TRUE.,
  usingSphericalPolarGrid=.FALSE.,
 
- delX =   800*500.,
- delY =   120*500., 
+ delX =   800*600.,
+ delY =   100*600., 
  delRFile = 'delZ.init',
  &
 
