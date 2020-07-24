@@ -6,6 +6,7 @@ run/
 run*
 build/
 *.init
+*.nc
 std*
 *.meta
 *.data
