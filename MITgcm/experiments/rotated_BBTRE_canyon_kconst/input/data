@@ -65,7 +65,7 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =   720000,
+ niter0          =  2880000,
  nTimeSteps      =   720000,
 # nTimeSteps      =       2,
  deltaT          =      60.,

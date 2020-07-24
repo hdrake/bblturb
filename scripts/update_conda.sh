@@ -1,2 +1,2 @@
-conda install -c conda-forge matplotlib xarray dask xgcm xmitgcm jupyterlab netCDF4
+conda install -c conda-forge matplotlib xarray dask xgcm xmitgcm xhistogram jupyterlab netCDF4
 

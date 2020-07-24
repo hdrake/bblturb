@@ -1,4 +1,4 @@
-conda activate base
+#!/usr/bin/env bash
 
 # Dedalus stack builder using conda, with options for own MPI and FFTW.
 # Run this file after installing conda and activating the base environment.
@@ -8,7 +8,7 @@ conda activate base
 #############
 
 # Conda environment name
-CONDA_ENV="bblturb"
+CONDA_ENV="bblturb-dedalus"
 
 # Skip conda prompts
 CONDA_YES=1
@@ -30,6 +30,9 @@ INSTALL_HDF5=1
 
 # BLAS options for numpy/scipy: "openblas" or "mkl"
 BLAS="openblas"
+
+# Python version
+PYTHON_VERSION="3.8"
 
 ############
 ## Script ##
@@ -111,9 +114,15 @@ if [ $? -eq 0 ]
 then
     echo "WARNING: Conda environment '${CONDA_ENV}' already exists"
     prompt_to_proceed
+elif [[ "$OSTYPE" == "darwin"* ]]
+then
+    # Fix clang to v9 on mac to avoid linker problems with v10
+    echo "Building new conda environment '${CONDA_ENV}'"
+    conda create "${CARGS[@]}" -c conda-forge "python=${PYTHON_VERSION}" "clang=9"
+    conda activate ${CONDA_ENV}
 else
     echo "Building new conda environment '${CONDA_ENV}'"
-    conda create "${CARGS[@]}" -c conda-forge python=3.7
+    conda create "${CARGS[@]}" -c conda-forge "python=${PYTHON_VERSION}"
     conda activate ${CONDA_ENV}
 fi
 
@@ -142,7 +151,7 @@ esac
 if [ ${INSTALL_MPI} -eq 1 ]
 then
     echo "Installing conda-forge openmpi, mpi4py"
-    conda install "${CARGS[@]}" -c conda-forge openmpi==3.1.0 mpi4py
+    conda install "${CARGS[@]}" -c conda-forge openmpi openmpi-mpicc mpi4py
 else
     echo "Not installing openmpi"
     echo "Installing mpi4py with pip"
@@ -154,9 +163,9 @@ fi
 
 if [ ${INSTALL_FFTW} -eq 1 ]
 then
-    echo "Installing cryoem fftw-mpi"
-    # no-deps to avoid pulling cryoem openmpi
-    conda install "${CARGS[@]}" -c cryoem --no-deps fftw-mpi
+    echo "Installing conda-forge fftw"
+    # no-deps to avoid pulling openmpi
+    conda install "${CARGS[@]}" -c conda-forge --no-deps "fftw=*=*openmpi*"
 else
     echo "Not installing fftw"
 fi
@@ -174,7 +183,10 @@ else
 fi
 
 echo "Installing conda-forge docopt, matplotlib"
-conda install "${CARGS[@]}" -c conda-forge docopt matplotlib
+conda install "${CARGS[@]}" -c conda-forge docopt matplotlib dask xarray jupyterlab netCDF4
+python3 -m pip install git+https://github.com/xgcm/xgcm.git
+python3 -m pip install git+https://github.com/xgcm/xhistogram.git
+python3 -m pip install git+https://github.com/MITgcm/xmitgcm.git
 
 echo "Installing dedalus with pip"
 # no-cache to avoid wheels from previous pip installs
