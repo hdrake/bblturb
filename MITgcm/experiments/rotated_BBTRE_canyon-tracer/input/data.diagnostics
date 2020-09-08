@@ -22,28 +22,31 @@
 # Standard diagnostics
   fields(1:6,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
   fileName(1) = 'standardDiag',
-  frequency(1) = 8640000.,
+  frequency(1) = 4320000.,
 
 # Tracer01 budget diagnostics
   fields(1:8, 2) = 'TRAC01', 'Tp_gTr01',
                   'DFrITr01', 'DFxETr01', 'DFyETr01',
                   'ADVrTr01', 'ADVxTr01', 'ADVyTr01',
   fileName(2) = 'tracer01Diag',
-  frequency(2) = -864000.,
+  frequency(2) = -86400.,
+  timePhase(2) = 0.,
 
 # Tracer02 budget diagnostics
   fields(1:8, 3) = 'TRAC02', 'Tp_gTr02',
                   'DFrITr02', 'DFxETr02', 'DFyETr02',
                   'ADVrTr02', 'ADVxTr02', 'ADVyTr02',
   fileName(3) = 'tracer02Diag',
-  frequency(3) = -864000.,
+  frequency(3) = -86400.,
+  timePhase(3) = 0.,
 
 # Tracer03 budget diagnostics
   fields(1:8, 4) = 'TRAC03', 'Tp_gTr03',
                   'DFrITr03', 'DFxETr03', 'DFyETr03',
                   'ADVrTr03', 'ADVxTr03', 'ADVyTr03',
   fileName(4) = 'tracer03Diag',
-  frequency(4) = -864000.,
+  frequency(4) = -86400.,
+  timePhase(4) = 0.,
 
 # Temperature budget diagnostics
   fields(1:12,5) = 'THETA', 'ADVr_TH', 'ADVx_TH', 'ADVy_TH',
@@ -51,18 +54,21 @@
                   'WVEL', 'UVEL', 'VVEL', 'TOTTTEND',
                   'KVDIFF  ',
   fileName(5) = 'budgetDiag',
-  frequency(5) = -864000.,
+  frequency(5) = -86400.,
+  timePhase(5) = 0.,
 
 # Snapshots of key variables at a single level
-  fields(1:5,6)  = 'THETA', 'UVEL', 'VVEL', 'WVEL', 'ADVrTr03',
-  levels(1:1,6) = 70.,
+  fields(1:4,6)  = 'THETA', 'UVEL', 'VVEL', 'WVEL',
+  levels(1:4,6) = 32., 55., 73., 100.,
   fileName(6) = 'levelDiag',
-  frequency(6) = 43200.,
+  frequency(6) = -21600.,
+  timePhase(6) = 0.,
 
 # High frequency tracer output
-  fields(1:3,7) = 'TRAC01', 'TRAC02', 'TRAC03',
-  fileName(7) = 'tracerDiag',
-  frequency(7) = 86400.,
+#  fields(1:3,7) = 'TRAC01', 'TRAC02', 'TRAC03',
+#  fileName(7) = 'tracerDiag',
+#  frequency(7) = 86400.,
+#  frequency(7) = -1800.,
  &
 
 #--------------------

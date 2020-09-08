@@ -10,5 +10,6 @@ build/
 std*
 *.meta
 *.data
+output.txt
 
 __pycache__/

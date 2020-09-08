@@ -65,10 +65,10 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =  3600000,
- nTimeSteps      =   720000,
+ niter0          =  7200000,
+ nTimeSteps      =   288000,
 # nTimeSteps      =       2,
- deltaT          =      60.,
+ deltaT          =      30.,
  dumpFreq        =       0.,
  monitorFreq     =  864000.,
  dumpInitAndLast =  .FALSE.,

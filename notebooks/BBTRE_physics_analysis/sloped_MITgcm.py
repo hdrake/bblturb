@@ -3,6 +3,7 @@ import xarray as xr
 import numpy as np
 
 import matplotlib
+import copy
 from matplotlib import pyplot as plt
 plt.rcParams['figure.figsize'] = (10,6)
 plt.rcParams['font.size'] = 16
@@ -15,9 +16,10 @@ day2seconds = 1./86400.
 
 # Plotting parameters
 nancol = (0.65,0.65,0.65)
-div_cmap = plt.get_cmap('RdBu_r')
+div_cmap = copy.copy(matplotlib.cm.get_cmap("RdBu_r"))
+
 div_cmap.set_bad(color=nancol)
-cmap = plt.get_cmap('viridis')
+cmap = copy.copy(matplotlib.cm.get_cmap("viridis"))
 cmap.set_bad(color=nancol)
 
 def mean_profile(da):
@@ -54,7 +56,11 @@ def _interp(x, y, bins=None):
     )
 
 def hab_interp(da, hab_bins=np.arange(2.5, 2000., 5.), vert_coord='Z', gridface='C'):
-    hab = xr.DataArray(hab_bins, coords={"hab": hab_bins}, dims=["hab"])
+    hab = xr.DataArray(
+        hab_bins,
+        coords={f'hab{gridface}': hab_bins},
+        dims=[f'hab{gridface}']
+    )
     da_itp = xr.apply_ufunc(
         _interp,
         da[f'{vert_coord}_hab{gridface}'],
@@ -62,12 +68,12 @@ def hab_interp(da, hab_bins=np.arange(2.5, 2000., 5.), vert_coord='Z', gridface=
         vectorize=True,
         dask='parallelized',
         input_core_dims=[[vert_coord], [vert_coord]],
-        output_core_dims=[['hab']],
-        output_sizes={'hab': hab.size},
+        output_core_dims=[[f'hab{gridface}']],
+        output_sizes={f'hab{gridface}': hab.size},
         output_dtypes=[float],
         kwargs={'bins': hab_bins},
     )
-    da_itp = da_itp.assign_coords({'hab': hab})
+    da_itp = da_itp.assign_coords({f'hab{gridface}': hab})
     return da_itp
 
 def parallel_combine(ds_list, concat_dims):
@@ -129,6 +135,11 @@ def add_rotated_coords(ds, θ, shift_vertical = True):
     
     return ds, grid
 
+def kvdiff_mask(ds, grid):
+    maskUp = grid.interp(ds['maskC'].astype('float64'), 'Z', boundary='extend') == 1.
+    ds['KVDIFF'] = ds['KVDIFF'].where(maskUp, 0.)
+    return ds
+
 
 def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
     """Calculate the convergence of fluxes of tracer `suffix` where
@@ -159,9 +170,12 @@ def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
     ]
 
     if suffix=="_TH":
+        # mask KVDIFF
+        ds = kvdiff_mask(ds, grid)
+        
         # diffusion of mean buoyancy
         conv_vert_diff_flux_anom = (-(grid.diff(
-            ds['KVDIFF'].where(ds['WVEL'] != 0., 0.), 'Z', boundary='fill'
+            ds['KVDIFF'], 'Z', boundary='fill'
         )/(ds['drF']*ds['hFacC'])*np.cos(θ)*Γ*ds['dV'])
         ).rename('conv_vert_diff_flux_anom' + new_suffix)
         
@@ -186,9 +200,6 @@ def add_temp_budget(temp, grid, Γ, θ):
     budget['total_tendency_TH_truth'] = temp.TOTTTEND * temp['dV'] * day2seconds
     budget['diff_tendency_TH'] = (budget['conv_horiz_diff_flux_TH'] + budget['conv_vert_diff_flux_TH'] + budget['conv_vert_diff_flux_anom_TH'])
     budget['adv_tendency_TH'] = (budget['conv_horiz_adv_flux_TH'] + budget['conv_vert_adv_flux_TH'] + budget['conv_adv_flux_anom_TH'])
-    budget['total_tendency_TH_2'] = (
-        budget['diff_tendency_TH'] + budget['adv_tendency_TH']
-    )
     tmp = xr.merge([temp, budget])
     tmp.attrs = temp.attrs
     return tmp
