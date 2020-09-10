@@ -1,7 +1,10 @@
 .ipynb_checkpoints
+
 figures
 data/*
+
 env
+
 run/
 run*
 build/
@@ -11,5 +14,12 @@ std*
 *.meta
 *.data
 output.txt
+
+!data/BBTRE-tracer/
+!data/BBTRE-tracer/*.nc
+!data/RotatedPrescribedMixing2D/
+!data/RotatedPrescribedMixing2D/*.nc
+!data/RotatedTidalMixing2D/
+!data/RotatedTidalMixing2D/*.nc
 
 __pycache__/
