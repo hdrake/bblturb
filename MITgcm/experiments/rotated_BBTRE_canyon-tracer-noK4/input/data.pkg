@@ -1,6 +1,0 @@
-# Packages
- &PACKAGES
- useDiagnostics=.TRUE.,
- useMYPACKAGE=.TRUE.,
- usePTRACERS=.TRUE.,
- &

@@ -44,7 +44,7 @@
 
  saltStepping  = .FALSE.,
 
- tempAdvScheme = 2,
+ tempAdvScheme = 33,
 
  hFacMin=0.1,
 
@@ -55,19 +55,18 @@
 
 # Elliptic solver parameters
  &PARM02
- cg2dMaxIters       =  10000,
- cg2dTargetResidual = 1.E-14,
+ cg2dMaxIters       =   3000,
+ cg2dTargetResidual = 1.E-12,
  cg2dUseMinResSol   =      1,
 
  cg3dMaxIters       =   1000,
- cg3dTargetResidual = 1.E-14,
+ cg3dTargetResidual = 1.E-12,
  &
 
 # Time stepping parameters
  &PARM03
- niter0          =  2880000,
- nTimeSteps      =   720000,
-# nTimeSteps      =       2,
+ niter0          =  1584000,
+ nTimeSteps      =   432000,
  deltaT          =      60.,
  dumpFreq        =       0.,
  monitorFreq     =  864000.,

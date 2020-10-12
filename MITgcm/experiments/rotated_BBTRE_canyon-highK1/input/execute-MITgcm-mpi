@@ -8,7 +8,7 @@
 #SBATCH --time=48:00:00
 #SBATCH --error stderr
 #SBATCH --output stdout
-#SBATCH --job-name BBkconst
+#SBATCH --job-name BBhiK
 #SBATCH --mail-type FAIL,END
 #SBATCH --mail-user hdrake@mit.edu
 
