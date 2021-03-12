@@ -1,0 +1,26 @@
+Checklist for running variable resolution experiments:
+
+Directory structure:
+  [x] Copy input and code files from reference simulation
+  [x] Run Jupyter notebook to create input files
+
+/code files:
+  SIZE.h
+    [x] Change resolution and MPI partitioning in SIZE.h file
+
+[x] Re-compile
+
+/input files:
+  data
+    [x] Multiply 1st term in delX and delY by 2.0 and 2nd by 0.5
+    [x] Multiply deltaT by 0.5 and nTimesteps by 2.0
+    [x] Multiply viscA4 and diffK4T parameters by 0.5^4
+    [x] Possibly change runtime, depending on whether or not you think the run will finish
+  data.diagnostics
+    [x] Turn off all diagnostics except UVEL, VVEL, WVEL, THETA in levelDiag, and
+        UVEL, VVEL, WVEL, THETA, DRHODR, ADVr_TH in meanDiag
+  execution script
+    [x] Check that number of processors and nodes is consistent with SIZE.h code file
+
+[x] Submit execution batch script
+[ ] Check that the job runs succesfully!

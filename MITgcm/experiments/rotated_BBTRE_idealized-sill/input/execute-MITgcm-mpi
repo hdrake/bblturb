@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --partition sched_mit_raffaele
-#SBATCH --nodes 1
-#SBATCH --ntasks 16
+#SBATCH --nodes 2
+#SBATCH --ntasks 32
 #SBATCH --exclusive
 #SBATCH --mem 64000
 #SBATCH --time=48:00:00
@@ -30,5 +30,5 @@ scp * ../run
 cd ../run
 
 SECONDS=0
-mpirun -n 16 ./mitgcmuv > output.txt
+mpirun -n 32 ./mitgcmuv > output.txt
 echo "Completed in $SECONDS seconds"

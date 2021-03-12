@@ -89,15 +89,14 @@ def parallel_combine(ds_list, concat_dims):
         ds_new_list.append(xr.combine_by_coords(tmp_list))
     return xr.merge(ds_new_list)
 
-def periodic_extend(ds, concat_dims, dx, extend_multiples):
-    Lx = ds['XC'].size*dx
-    
+def periodic_extend(ds, concat_dims, L, extend_multiples):
+
     ds_list = []
     for extend in range(extend_multiples[0], extend_multiples[1]+1):
         tmp = ds.copy()
         tmp_attrs = [tmp[dim].attrs for dim in concat_dims]
         for dim in concat_dims:
-            tmp[dim] = tmp[dim] + extend*Lx
+            tmp[dim] = tmp[dim] + extend*L
         ds_list.append(tmp)
     ds = parallel_combine(ds_list, concat_dims = concat_dims)
     for i, dim in enumerate(concat_dims):
@@ -134,78 +133,3 @@ def add_rotated_coords(ds, θ, shift_vertical = True):
     ds['Depthr'] = ds['Depth'] - ds['XC']*np.tan(θ)
     
     return ds, grid
-
-def kvdiff_mask(ds, grid):
-    maskUp = grid.interp(ds['maskC'].astype('float64'), 'Z', boundary='extend') == 1.
-    ds['KVDIFF'] = ds['KVDIFF'].where(maskUp, 0.)
-    return ds
-
-
-def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
-    """Calculate the convergence of fluxes of tracer `suffix` where
-    `suffix` is `_TH`, `Tr01`, or 'Tr02'. Return a new xarray.Dataset."""
-    new_suffix = suffix
-    if new_suffix[0] != "_":
-        new_suffix = "_"+new_suffix
-    
-    conv_horiz_adv_flux = (
-        -(grid.diff(ds['ADVx' + suffix], 'X') +
-          grid.diff(ds['ADVy' + suffix], 'Y'))
-    ).rename('conv_horiz_adv_flux' + new_suffix)
-    conv_horiz_diff_flux = (
-        -(grid.diff(ds['DFxE' + suffix], 'X') +
-          grid.diff(ds['DFyE' + suffix], 'Y'))
-    ).rename('conv_horiz_diff_flux' + new_suffix)
-
-    # sign convention is opposite for vertical fluxes
-    conv_vert_adv_flux = (
-        grid.diff(ds['ADVr' + suffix], 'Z', boundary='fill')
-    ).rename('conv_vert_adv_flux' + new_suffix)
-    conv_vert_diff_flux = (
-        grid.diff(ds['DFrI' + suffix], 'Z', boundary='fill')
-    ).rename('conv_vert_diff_flux' + new_suffix)
-
-    all_fluxes = [
-        conv_horiz_adv_flux, conv_horiz_diff_flux, conv_vert_adv_flux, conv_vert_diff_flux
-    ]
-
-    if suffix=="_TH":
-        # mask KVDIFF
-        ds = kvdiff_mask(ds, grid)
-        
-        # diffusion of mean buoyancy
-        conv_vert_diff_flux_anom = (-(grid.diff(
-            ds['KVDIFF'], 'Z', boundary='fill'
-        )/(ds['drF']*ds['hFacC'])*np.cos(θ)*Γ*ds['dV'])
-        ).rename('conv_vert_diff_flux_anom' + new_suffix)
-        
-        # perturbation advection of mean buoyancy
-        conv_adv_flux_anom = (-(
-            grid.interp(ds['UVEL'], 'X')*Γ*np.sin(θ)*ds['dV'] +
-            grid.interp(ds['WVEL'], 'Z', boundary='fill')*Γ*np.cos(θ)*ds['dV']
-        )).rename('conv_adv_flux_anom' + new_suffix)
-        
-        all_fluxes += [conv_vert_diff_flux_anom, conv_adv_flux_anom]
-
-    conv_all_fluxes = sum(all_fluxes).rename('conv_total_flux' + new_suffix)
-
-    return xr.merge(all_fluxes + [conv_all_fluxes])
-
-def add_temp_budget(temp, grid, Γ, θ):
-    day2seconds = 1./(86400.)
-    temp['dV'] = (temp.drF * temp.rA * temp.hFacC)
-    
-    budget = tracer_flux_budget(temp, grid, '_TH', Γ=Γ, θ=θ).chunk({'Z': -1, 'YC': -1, 'XC': 400})
-    budget['total_tendency_TH'] = budget['conv_total_flux_TH']
-    budget['total_tendency_TH_truth'] = temp.TOTTTEND * temp['dV'] * day2seconds
-    budget['diff_tendency_TH'] = (budget['conv_horiz_diff_flux_TH'] + budget['conv_vert_diff_flux_TH'] + budget['conv_vert_diff_flux_anom_TH'])
-    budget['adv_tendency_TH'] = (budget['conv_horiz_adv_flux_TH'] + budget['conv_vert_adv_flux_TH'] + budget['conv_adv_flux_anom_TH'])
-    tmp = xr.merge([temp, budget])
-    tmp.attrs = temp.attrs
-    return tmp
-
-def check_temp_budget_closes(temp, rel_err_tol=1.e-3):
-    temp_int = temp[['total_tendency_TH', 'total_tendency_TH_truth']].sum(dim=['Z','YC', 'XC']).mean(dim='time').load()
-    a, b = temp_int['total_tendency_TH'].values, temp_int['total_tendency_TH_truth'].values
-    rel_err = np.abs((a-b)/((a+b)/2.))
-    return rel_err < rel_err_tol

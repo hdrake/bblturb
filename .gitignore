@@ -17,6 +17,9 @@ output.txt
 
 !data/BBTRE-tracer/
 !data/BBTRE-tracer/*.nc
+!data/BBTRE-physics/
+!data/BBTRE-physics/*.nc
+data/BBTRE-physics/buoyancy_canyon-tracer.nc
 !data/RotatedPrescribedMixing2D/
 !data/RotatedPrescribedMixing2D/*.nc
 !data/RotatedTidalMixing2D/
