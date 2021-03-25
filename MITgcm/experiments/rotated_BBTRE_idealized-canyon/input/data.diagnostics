@@ -22,7 +22,7 @@
 # Standard diagnostics
   fields(1:5,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
   fileName(1) = 'standardDiag',
-  frequency(1) = 4320000.,
+  frequency(1) = 2160000.,
 #  frequency(1) = 10800.,
 #  frequency(1) = -12000.,
 #  frequency(1) = 60.,

@@ -11,8 +11,8 @@
  no_slip_sides  = .TRUE.,
  no_slip_bottom = .TRUE.,
 
- viscA4 = 2.E3,
- diffK4T = 2.E3,
+ viscA4 = 2.E4,
+ diffK4T = 2.E4,
 
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
@@ -40,7 +40,7 @@
  writeBinaryPrec = 64,
  writeStatePrec  = 64,
 
- staggerTimeStep = .FALSE.,
+ staggerTimeStep = .TRUE.,
 
  saltStepping  = .FALSE.,
 
@@ -65,15 +65,15 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =  7488000,
- nTimeSteps      =   288000,
+ niter0          =  7776000,
+ nTimeSteps      =   144000,
 # nTimeSteps      =       2,
  deltaT          =      15.,
  dumpFreq        =       0.,
  monitorFreq     =  864000.,
  dumpInitAndLast =  .FALSE.,
  abEps           =      0.1,
- pChkptFreq      = 8640000.,
+ pChkptFreq      = 2160000.,
  chkptFreq       =      0.0,
  momDissip_In_AB =  .FALSE.,
  &

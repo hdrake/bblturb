@@ -2,17 +2,18 @@ name: bblturb-analysis
 channels:
   - conda-forge
 dependencies:
-  - dask
+  # Temporarily pinning dask version
+  - dask!=2021.3.0
   - xarray
   - xrft
-  - xhistogram
   - jupyterlab
   - netCDF4
   - h5py
   - pytables
   - gsw
   - matplotlib
+  - xgcm
+  - xmitgcm
   - pip
   - pip:
-    - git+https://github.com/xgcm/xgcm.git
-    - git+https://github.com/MITgcm/xmitgcm.git
+    - git+https://github.com/xgcm/xhistogram

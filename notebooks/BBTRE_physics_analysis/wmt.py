@@ -30,7 +30,7 @@ def kvdiff_mask(ds, grid):
     return ds
 
 
-def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
+def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0., add_standing=False):
     """Calculate the convergence of fluxes of tracer `suffix` where
     `suffix` is `_TH`, `Tr01`, or 'Tr02'. Return a new xarray.Dataset."""
     new_suffix = suffix
@@ -77,14 +77,20 @@ def tracer_flux_budget(ds, grid, suffix, θ=0., Γ=0.):
         all_fluxes += [conv_vert_diff_flux_anom, conv_adv_flux_anom]
 
     conv_all_fluxes = sum(all_fluxes).rename('conv_total_flux' + new_suffix)
+    
+    if add_standing:
+        conv_vert_adv_standing_flux = (
+            grid.diff(ds['ADVr' + suffix + "_standing"], 'Z', boundary='fill')
+        ).rename('conv_vert_adv_standing_flux' + new_suffix)
+        all_fluxes.append(conv_vert_adv_standing_flux)
 
     return xr.merge(all_fluxes + [conv_all_fluxes])
 
-def add_temp_budget(temp, grid, Γ, θ):
+def add_temp_budget(temp, grid, Γ, θ, add_standing=False):
     day2seconds = 1./(86400.)
     temp['dV'] = (temp.drF * temp.rA * temp.hFacC)
     
-    budget = tracer_flux_budget(temp, grid, '_TH', Γ=Γ, θ=θ).chunk({'Z': -1, 'YC': -1, 'XC': 400})
+    budget = tracer_flux_budget(temp, grid, '_TH', Γ=Γ, θ=θ, add_standing=add_standing).chunk({'Z': -1, 'YC': -1, 'XC': 400})
     budget['total_tendency_TH'] = budget['conv_total_flux_TH']
     budget['total_tendency_TH_truth'] = temp.TOTTTEND * temp['dV'] * day2seconds
     budget['diff_tendency_TH'] = (budget['conv_horiz_diff_flux_TH'] + budget['conv_vert_diff_flux_TH'] + budget['conv_vert_diff_flux_anom_TH'])
