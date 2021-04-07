@@ -1,0 +1,16 @@
+Checklist for running variable resolution experiments:
+
+Directory structure:
+  [x] Copy input and code files from reference simulation
+  [x] Run Jupyter notebook to create input files
+
+/input files:
+  data
+    [x] Change iter0 to 0
+  data.pkg
+    [x] Turn off Ptracers
+  data.diagnostics
+    [x] Turn off Ptracers diagnostics
+
+[x] Submit execution batch script
+[ ] Check that the job runs succesfully!
