@@ -34,7 +34,7 @@ def add_background_temp(ds, Γ):
     ds['THETA_BG'] = ds['THETA'] + ds['Zr'] * Γ
     return ds
 
-def add_Nsq(ds, Γ):
+def add_Nsq(ds, Γ, α=α, g=g, ρ0=ρ0):
     ds['Nsq'] = -g/ρ0*ds['DRHODR']
     ds['Nsq'] = ds['Nsq'].where(ds['Nsq'] != 0.)
     ds['Nsq'] += g*α*Γ

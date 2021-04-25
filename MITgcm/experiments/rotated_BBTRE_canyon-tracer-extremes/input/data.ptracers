@@ -1,0 +1,17 @@
+ &PTRACERS_PARM01
+ PTRACERS_numInUse=2,
+ PTRACERS_Iter0=0,
+ PTRACERS_dumpFreq= 36000000000.,
+# tracer 1 - Passive Tracer
+ PTRACERS_names(1)='Cv',
+ PTRACERS_long_names(1)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(1)='mol/m^3',
+ PTRACERS_advScheme(1)=33,
+ PTRACERS_initialFile(1)='Cv.init',
+# tracer 2 - Passive Tracer
+ PTRACERS_names(2)='Ch',
+ PTRACERS_long_names(2)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(2)='mol/m^3',
+ PTRACERS_advScheme(2)=33,
+ PTRACERS_initialFile(2)='Ch.init',
+ &

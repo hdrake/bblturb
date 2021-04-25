@@ -15,9 +15,9 @@
  diffK4T = 2.e1,
  diffK4S = 2.e1,
 
- viscAh = 1.E-3,
- diffKhT = 1.E-3,
- diffKhS = 1.E-3,
+ viscAh = 2.E-3,
+ diffKhT = 2.E-3,
+ diffKhS = 2.E-3,
 
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
@@ -71,13 +71,13 @@
 # Time stepping parameters
  &PARM03
  niter0          =        0,
- nTimeSteps      =   172800,
- deltaT          =       5.,
+ nTimeSteps      =   864000,
+ deltaT          =       2.,
  dumpFreq        =       0.,
- monitorFreq     =  864000.,
+ monitorFreq     = 1728000.,
  dumpInitAndLast =  .FALSE.,
  abEps           =      0.1,
- pChkptFreq      = 4320000.,
+ pChkptFreq      = 1728000.,
  chkptFreq       =      0.0,
  momDissip_In_AB =  .FALSE.,
  &

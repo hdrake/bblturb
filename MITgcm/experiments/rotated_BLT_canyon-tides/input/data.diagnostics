@@ -20,11 +20,14 @@
  &DIAGNOSTICS_LIST
 # diag_mnc     = .FALSE.,
 # Standard diagnostics
-  fields(1:6,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
+  fields(1:5,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
   fileName(1) = 'standardDiag',
-#  frequency(1) = 4320000.,
-  frequency(1) = -3600.,
-  timePhase(1) = 0.,
+  frequency(1) = 43200.,
+
+# Mean mixing diagnostics
+  fields(1:1,2) = 'KVDIFF',
+  fileName(2) = 'meanmixDiag',
+  frequency(2) = 43200.,
 
 # Tracer01 budget diagnostics
 #  fields(1:8, 2) = 'TRAC01', 'Tp_gTr01',

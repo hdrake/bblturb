@@ -61,21 +61,23 @@ C     Edited by Henri F. Drake, 02/14/2019
       REAL*8 tauTop
       REAL*8 tauProfile
 
-      REAL*8 amp_tide
-      REAL*8 amp_force
+      REAL*8 U0
+      REAL*8 U0relax
       REAL*8 omega_tide
+      REAL*8 phi_tide
 
 C     Parameters for approximate Lunar Diurnal tide
-      omega_tide  = 2*3.14159265359/(24*3600)
-      amp_tide    = 0.015
-      amp_force   = amp_tide * (omega_tide*omega_tide-f0*f0)
-     &                       / (omega_tide*omega_tide)
+      phi_tide = (0./360.)*2*3.14159265359
+      omega_tide  = 2*3.14159265359/(12*3600)
+      U0 = 0.1
+      U0relax = U0 * (omega_tide*omega_tide) /
+     &             (omega_tide*omega_tide-f0*f0)
 
 C     Parameters for relaxation layer
       tauTop = 1./(3600.)
       tauProfile = 0.
-      if((rC(k)-rC(Nr)).gt.950.) then
-      tauProfile=tauTop*((rC(k)-rC(Nr))-950.)/((rC(1)-rC(Nr))-950.)
+      if((rC(k)-rC(Nr)).gt.1400.) then
+      tauProfile=tauTop*((rC(k)-rC(Nr))-1400.)/((rC(1)-rC(Nr))-1400.)
       end if
 
       IF ( myPa_applyTendU .AND. myPa_Tend_Cgrid ) THEN
@@ -90,10 +92,13 @@ C     Add projection of buoyancy production term to u-tendency
      &        *sin(slopeAngle)
      &      )
 C     Add tidal forcing
-     &     +( amp_force*omega_tide*cos(omega_tide*myTime)
+     &      + U0*omega_tide*cos(omega_tide*myTime)*cos(phi_tide)
 C     Add tidal relaxation in sponge layer (what does this do?)
-     &       +(amp_tide*sin(omega_tide*myTime)-uVel(i,j,k,bi,bj))
-     &       *tauProfile)
+     &      + ( U0relax * ( cos(phi_tide)*sin(omega_tide*myTime)
+     &                     -sin(phi_tide)*cos(omega_tide*myTime)
+     &                     *f0/omega_tide )
+     &         -uVel(i,j,k,bi,bj) )
+     &      * tauProfile
      &     )
 
          ENDDO
@@ -165,18 +170,24 @@ C     ================================================================
 C     Edited by Henri F. Drake, 02/14/2019
       REAL*8 tauTop
       REAL*8 tauProfile
-      REAL*8 amp_tide
+
+      REAL*8 U0
+      REAL*8 U0relax
       REAL*8 omega_tide
+      REAL*8 phi_tide
 
 C     Parameters for approximate Lunar Diurnal tide
-      omega_tide  = 2*3.14159265359/(24*3600)
-      amp_tide    = 0.015
+      phi_tide = (0./360.)*2*3.14159265359
+      omega_tide  = 2*3.14159265359/(12*3600)
+      U0 = 0.1
+      U0relax = U0 * (omega_tide*omega_tide) /
+     &             (omega_tide*omega_tide-f0*f0)
 
 C     Parameters for relaxation layer
       tauTop = 1./(3600.)
       tauProfile = 0.
-      if((rC(k)-rC(Nr)).gt.950.) then
-      tauProfile=tauTop*((rC(k)-rC(Nr))-950.)/((rC(1)-rC(Nr))-950.)
+      if((rC(k)-rC(Nr)).gt.1400.) then
+      tauProfile=tauTop*((rC(k)-rC(Nr))-1400.)/((rC(1)-rC(Nr))-1400.)
       end if
 
       IF ( myPa_applyTendV .AND. myPa_Tend_Cgrid ) THEN
@@ -184,11 +195,16 @@ C     Parameters for relaxation layer
         DO j=jMin,jMax
          DO i=iMin,iMax
           gV_arr(i,j) = gV_arr(i,j)
-C     Add tidal restoring on V
      &     + maskS(i,j,k,bi,bj) * (
-     &        (amp_tide*cos(omega_tide*myTime)-vVel(i,j,k,bi,bj))
-     &        *tauProfile
-     &       )
+C     Add tidal forcing
+     &      + U0*omega_tide*cos(omega_tide*myTime)*sin(phi_tide)
+C     Add tidal relaxation in sponge layer (what does this do?)
+     &      + ( U0relax * ( sin(phi_tide)*sin(omega_tide*myTime)
+     &                     +cos(phi_tide)*cos(omega_tide*myTime)
+     &                     *f0/omega_tide )
+     &         -vVel(i,j,k,bi,bj) )
+     &      * tauProfile
+     &     )
          ENDDO
         ENDDO
 C     ================================================================
@@ -265,8 +281,8 @@ C     Edited by Henri F. Drake, 01/31/2019
 C     Parameters for relaxation layer
       tauTop = 1./(3600.)
       tauProfile = 0.
-      if((rC(k)-rC(Nr)).gt.950.) then
-      tauProfile=tauTop*((rC(k)-rC(Nr))-950.)/((rC(1)-rC(Nr))-950.)
+      if((rC(k)-rC(Nr)).gt.1400.) then
+      tauProfile=tauTop*((rC(k)-rC(Nr))-1400.)/((rC(1)-rC(Nr))-1400.)
       end if
 
 C     Apply tendencies on temperature perturbations due to advection of

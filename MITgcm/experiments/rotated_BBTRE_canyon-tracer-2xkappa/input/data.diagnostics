@@ -25,12 +25,12 @@
   frequency(1) = 4320000.,
 
 # Tracer01 budget diagnostics
-#  fields(1:8, 2) = 'TRAC01', 'Tp_gTr01',
-#                  'DFrITr01', 'DFxETr01', 'DFyETr01',
-#                  'ADVrTr01', 'ADVxTr01', 'ADVyTr01',
-#  fileName(2) = 'tracer01Diag',
-#  frequency(2) = -86400.,
-#  timePhase(2) = 0.,
+  fields(1:8, 2) = 'TRAC01', 'Tp_gTr01',
+                  'DFrITr01', 'DFxETr01', 'DFyETr01',
+                  'ADVrTr01', 'ADVxTr01', 'ADVyTr01',
+  fileName(2) = 'tracer01Diag',
+  frequency(2) = -172800.,
+  timePhase(2) = 0.,
 
 # Tracer02 budget diagnostics
 #  fields(1:8, 3) = 'TRAC02', 'Tp_gTr02',
@@ -49,13 +49,13 @@
 #  timePhase(4) = 0.,
 
 # Temperature budget diagnostics
-  fields(1:12,2) = 'THETA', 'ADVr_TH', 'ADVx_TH', 'ADVy_TH',
+  fields(1:12,3) = 'THETA', 'ADVr_TH', 'ADVx_TH', 'ADVy_TH',
                   'DFrI_TH', 'DFxE_TH', 'DFyE_TH',
                   'WVEL', 'UVEL', 'VVEL', 'TOTTTEND',
                   'KVDIFF  ',
-  fileName(2) = 'budgetDiag',
-  frequency(2) = -4320000.,
-  timePhase(2) = 0.,
+  fileName(3) = 'budgetDiag',
+  frequency(3) = -172800.,
+  timePhase(3) = 0.,
 
 # Snapshots of key variables at a single level
 #  fields(1:4,6)  = 'THETA', 'UVEL', 'VVEL', 'WVEL',
