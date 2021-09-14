@@ -5,12 +5,12 @@
 # Continuous equation parameters
  &PARM01
 
- tRef = 200*0.,
- sRef = 200*35.,
+ tRef = 450*0.,
+ sRef = 450*35.,
 
- no_slip_sides  = .TRUE.,
- no_slip_bottom = .TRUE.,
- bottomDragQuadratic = 0.002,
+ no_slip_sides  = .FALSE.,
+ no_slip_bottom = .FALSE.,
+ bottomDragQuadratic = 0.0,
 
  viscA4 = 2.e1,
  diffK4T = 2.e1,
@@ -23,7 +23,7 @@
  implicitDiffusion=.TRUE.,
  implicitViscosity=.TRUE.,
 
- f0   = 0.00011514324926352239,
+ f0   = 0.00011797929793771868,
  beta = 0.E-11,
 
  eosType= 'LINEAR',
@@ -33,12 +33,9 @@
  gravity = 9.81,
  gBaro   = 9.81,
 
- lapseRate = 0.001444072277246354,
- slopeAngle = 0.058817189569051985,
-
  rigidLid = .FALSE.,
  implicitFreeSurface=.TRUE.,
- exactConserv = .TRUE.
+ exactConserv = .TRUE.,
  nonHydrostatic = .FALSE.,
 
  useSingleCpuIO = .TRUE.,
@@ -71,15 +68,14 @@
 
 # Time stepping parameters
  &PARM03
- niter0          =  1296000,
- nTimeSteps      =   432000,
-# nTimeSteps      =    1800.,
+ niter0          =   223560,
+ nTimeSteps      =   111780,
  deltaT          =       2.,
  dumpFreq        =       0.,
- monitorFreq     = 1728000.,
+ monitorFreq     =  223560.,
  dumpInitAndLast =  .FALSE.,
  abEps           =      0.1,
- pChkptFreq      =  432000.,
+ pChkptFreq      =  223560.,
  chkptFreq       =      0.0,
  momDissip_In_AB =  .FALSE.,
  &

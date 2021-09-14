@@ -1,7 +1,15 @@
 # MYPACKAGE CHOICES
  &MYPACKAGE_PARM01
- myPa_applyTendT = .true.,
- myPa_applyTendU = .true.,
- myPa_applyTendV = .true.,
- myPa_Tend_Cgrid = .true.,
+ myPa_applyTendT = .TRUE.,
+ myPa_applyTendU = .TRUE.,
+ myPa_applyTendV = .TRUE.,
+ myPa_Tend_Cgrid = .TRUE.,
+# Parameter values
+ slopeAngle = 0.058817189569051985,
+ lapseRate = 0.001444072277246354,
+ phiTide = 2.1268284479803232,
+ omegaTide = 0.00014052570466943997,
+ U0 = -0.005482168301454746,
+ hSponge = 1500.,
+ tau0Sponge = 0.00027777777,
  &

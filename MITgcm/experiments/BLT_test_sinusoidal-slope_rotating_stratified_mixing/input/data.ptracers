@@ -1,0 +1,23 @@
+ &PTRACERS_PARM01
+ PTRACERS_numInUse=3,
+ PTRACERS_Iter0=1296000,
+ PTRACERS_dumpFreq= 36000000000.,
+# tracer 1 - Passive Tracer
+ PTRACERS_names(1)='cBLT',
+ PTRACERS_long_names(1)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(1)='mol/m^3',
+ PTRACERS_advScheme(1)=33,
+ PTRACERS_initialFile(1)='cBLT.init',
+# tracer 2 - Passive Tracer
+ PTRACERS_names(2)='cCrest',
+ PTRACERS_long_names(2)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(2)='mol/m^3',
+ PTRACERS_advScheme(2)=33,
+ PTRACERS_initialFile(2)='cCrest.init',
+# tracer 3 - Passive Tracer
+ PTRACERS_names(3)='cInterior',
+ PTRACERS_long_names(3)='Passive Tracer [mol C/m^3]',
+ PTRACERS_units(3)='mol/m^3',
+ PTRACERS_advScheme(3)=33,
+ PTRACERS_initialFile(3)='cInterior.init',
+ &

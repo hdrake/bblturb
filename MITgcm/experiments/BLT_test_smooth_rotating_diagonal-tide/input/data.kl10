@@ -1,0 +1,6 @@
+ &kl10_PARM01
+ KLviscMax = 300,
+ KLdumpFreq = 3600,
+ KLtaveFreq = 3600,
+ KLwriteState = .FALSE.,
+ &

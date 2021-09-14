@@ -1,0 +1,101 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+
+ tRef = 450*0.,
+ sRef = 450*35.,
+
+ no_slip_sides  = .FALSE.,
+ no_slip_bottom = .FALSE.,
+ bottomDragQuadratic = 0.0,
+
+ viscA4 = 2.e1,
+ diffK4T = 2.e1,
+ diffK4S = 2.e1,
+
+ viscAh = 1.E-2,
+ diffKhT = 2.E-4,
+ diffKhS = 2.E-4,
+
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+
+ f0   = 0.0001151432492635148,
+ beta = 0.E-11,
+
+ eosType= 'LINEAR',
+ tAlpha = 0.0002,
+ sBeta  = 0.E-4,
+
+ gravity = 9.81,
+ gBaro   = 9.81,
+
+ rigidLid = .FALSE.,
+ implicitFreeSurface=.TRUE.,
+ exactConserv = .TRUE.
+ nonHydrostatic = .FALSE.,
+
+ useSingleCpuIO = .TRUE.,
+ readBinaryPrec  = 64,
+ writeBinaryPrec = 64,
+ writeStatePrec  = 64,
+
+ staggerTimeStep = .TRUE.,
+
+ saltStepping  = .FALSE.,
+
+ tempAdvScheme = 33,
+
+ hFacMin=0.4,
+
+## This parameter is not in the NAMELIST in this version of MITgcm.
+# momTidalForcing = .FALSE.,
+
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters       =  10000,
+ cg2dTargetResidual = 5.E-14,
+ cg2dUseMinResSol   =      1,
+
+ cg3dMaxIters       =   1000,
+ cg3dTargetResidual = 1.E-14,
+ &
+
+# Time stepping parameters
+ &PARM03
+ niter0          =        0,
+ nTimeSteps      =    43200,
+ deltaT          =       2.,
+ dumpFreq        =       0.,
+ monitorFreq     = 1728000.,
+ dumpInitAndLast =  .FALSE.,
+ abEps           =      0.1,
+ pChkptFreq      =  432000.,
+ chkptFreq       =      0.0,
+ momDissip_In_AB =  .FALSE.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ usingSphericalPolarGrid=.FALSE.,
+
+ delX =   192*100.,
+ delY =   80*100., 
+ delRFile = 'delZ.init',
+ &
+
+# Input datasets
+ &PARM05
+
+ uVelInitFile    = 'U.init',
+ vVelInitFile    = 'V.init',
+ hydrogThetaFile = 'T.init',
+ bathyFile       = 'topog.init',
+ diffKrFile      = 'kappa.init',
+ &

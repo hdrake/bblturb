@@ -1,6 +1,6 @@
  &PTRACERS_PARM01
  PTRACERS_numInUse=3,
- PTRACERS_Iter0=1296000,
+ PTRACERS_Iter0=223560,
  PTRACERS_dumpFreq= 36000000000.,
 # tracer 1 - Passive Tracer
  PTRACERS_names(1)='cBLT',

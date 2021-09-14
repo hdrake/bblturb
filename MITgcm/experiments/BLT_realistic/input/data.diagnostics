@@ -20,30 +20,28 @@
  &DIAGNOSTICS_LIST
 # diag_mnc     = .FALSE.,
 # Standard diagnostics
-  fields(1:5,1)  = 'THETA','UVEL','VVEL','WVEL','DRHODR',
+  fields(1:4,1)  = 'THETA','UVEL','VVEL','WVEL',
   fileName(1) = 'standardDiag',
-#  frequency(1) = 4320000.,
-  frequency(1) = 43200.,
-  frequency(1) = 3600.,
+  frequency(1) = -1863.,
+  timePhase(1) = 0.,
 
 # Mixing diagnostics
   fields(1:3,2) = 'KVDIFF', 'KLdiffKr', 'KLeps',
   fileName(2) = 'mixingDiag',
-  frequency(2) = -43200.,
+  frequency(2) = -1863.,
   timePhase(2) = 0.,
 
 # Mean mixing diagnostics
   fields(1:3,3) = 'KVDIFF', 'KLdiffKr', 'KLeps',
   fileName(3) = 'meanmixDiag',
-  frequency(3) = 43200.,
-#  frequency(3) = 3600.,
+  frequency(3) = 1863.,
 
 # Tracer01 budget diagnostics
   fields(1:8, 4) = 'TRAC01', 'Tp_gTr01',
                   'DFrITr01', 'DFxETr01', 'DFyETr01',
                   'ADVrTr01', 'ADVxTr01', 'ADVyTr01',
   fileName(4) = 'tracer01Diag',
-  frequency(4) = -3600.,
+  frequency(4) = -1863.,
   timePhase(4) = 0.,
 
 # Tracer02 budget diagnostics
@@ -51,7 +49,7 @@
                   'DFrITr02', 'DFxETr02', 'DFyETr02',
                   'ADVrTr02', 'ADVxTr02', 'ADVyTr02',
   fileName(5) = 'tracer02Diag',
-  frequency(5) = -3600.,
+  frequency(5) = -1863.,
   timePhase(5) = 0.,
 
 # Tracer03 budget diagnostics
@@ -59,7 +57,7 @@
                   'DFrITr03', 'DFxETr03', 'DFyETr03',
                   'ADVrTr03', 'ADVxTr03', 'ADVyTr03',
   fileName(6) = 'tracer03Diag',
-  frequency(6) = -3600.,
+  frequency(6) = -1863.,
   timePhase(6) = 0.,
 
 # Temperature budget diagnostics
@@ -68,7 +66,7 @@
                   'WVEL', 'UVEL', 'VVEL', 'TOTTTEND',
                   'KVDIFF  ',
   fileName(7) = 'budgetDiag',
-  frequency(7) = -3600.,
+  frequency(7) = -1863.,
   timePhase(7) = 0.,
 
 # Snapshots of key variables at a single level

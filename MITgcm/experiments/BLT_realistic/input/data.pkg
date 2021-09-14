@@ -3,5 +3,5 @@
  useDiagnostics=.TRUE.,
  useMYPACKAGE=.TRUE.,
  useKL10 = .TRUE.,
- usePTRACERS=.TRUE.,
+ usePTRACERS= .TRUE.,
  &
